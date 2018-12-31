@@ -23,16 +23,16 @@ class ApprovedSummaryContainer extends Component {
         const currency = Data.currency;
         return (
             <div className='approved-summary-container'>
-                <p>Your monthly repayment will be:</p>
+                <p className='approval-summary-text'>Your monthly repayment will be:</p>
                 <p className='approved-repayment-amount'>{currency}{this.monthlyPayment()}</p>
 
-                <p>Principal:</p>
+                <p className='approval-summary-text'><span className='approved-summary-text-dash'>-</span> Principal:</p>
                 <p className='approved-loan-amount'>{currency}{localStorage.getItem('loanAmount')}</p>
 
-                <p>Interest:</p>
+                <p className='approval-summary-text'><span className='approved-summary-text-dash'>-</span> Interest:</p>
                 <p className='approved-interest-amount'>{currency}{this.calculateInterestAmount()}</p>
 
-                <p>Total repayment:</p>
+                <p className='approval-summary-text'><span className='approved-summary-text-dash'>-</span> Total repayment:</p>
                 <p className='approved-total-repayment-amount'>{currency}{this.totalAmountToPay()}</p>
             </div>
         )

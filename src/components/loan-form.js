@@ -54,7 +54,6 @@ class LoanForm extends Component {
             loanAmout: '',
             loanTerm: '',
             countryPostcode: 'UK',
-            validating: false,
             formErrors: {
                 firstNameError: '',
                 surnameError: '',
@@ -116,7 +115,6 @@ class LoanForm extends Component {
               if(value.length === 0) {formErrors.postcodeError = '';}
               break;
             case 'dateOfBirth':
-            console.log(this.checkUserMaturity(value))
                 formErrors.dateOfBirthError = !this.checkUserMaturity(value) || !ValidDate(value) ? 'Date format is wrong or user is below age of 18' : '';
                 if(value.length === 0) {formErrors.dateOfBirthError = '';}
               break;
@@ -158,6 +156,7 @@ class LoanForm extends Component {
 
     checkUserMaturity = (date) => {
         const currentYear = new Date().getFullYear();
+        // eslint-disable-next-line 
         const getUserBirthYear = date.split(/[.,\/ -]/);
         const ageCalculation = parseInt(currentYear) - parseInt(getUserBirthYear[2]);
         if( ageCalculation >= 18) {
