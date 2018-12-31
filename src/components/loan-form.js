@@ -14,11 +14,6 @@ const checkEmailValidity = RegExp(
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 );
 
-const checkDateOfBirthValidity = RegExp(
-    // eslint-disable-next-line 
-    /^(0[1-9]|[12][0-9]|3[01])[\- \/.](?:(0[1-9]|1[012])[\- \/.](19|20)[0-9]{2})$/
-);
-
 const checkNameValidiry = RegExp(
     // eslint-disable-next-line 
     /^[a-z ,.'-]+$/i
@@ -44,7 +39,6 @@ const formValid = ({ formErrors, ...rest }) => {
   
     return valid;
   };
-
 
 class LoanForm extends Component {
     constructor() {
@@ -122,7 +116,8 @@ class LoanForm extends Component {
               if(value.length === 0) {formErrors.postcodeError = '';}
               break;
             case 'dateOfBirth':
-                formErrors.dateOfBirthError = !ValidDate(value) ? 'Field is empty or date format is wrong' : '';
+            console.log(this.checkUserMaturity(value))
+                formErrors.dateOfBirthError = !this.checkUserMaturity(value) || !ValidDate(value) ? 'Date format is wrong or user is below age of 18' : '';
                 if(value.length === 0) {formErrors.dateOfBirthError = '';}
               break;
             case 'companyName':
@@ -160,6 +155,17 @@ class LoanForm extends Component {
 
         return  Array.from(Array(max-min).keys()).map(i => min + i);
      } 
+
+    checkUserMaturity = (date) => {
+        const currentYear = new Date().getFullYear();
+        const getUserBirthYear = date.split(/[.,\/ -]/);
+        const ageCalculation = parseInt(currentYear) - parseInt(getUserBirthYear[2]);
+        if( ageCalculation >= 18) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     render() {
 
