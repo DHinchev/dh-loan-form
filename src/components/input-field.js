@@ -32,7 +32,6 @@ class InputField extends Component {
                     onChange={onChange} 
                     onBlur={this.handleBlur}
                     onFocus={this.handleFocus}
-                    autoComplete={"off"}
                     required/>
                 <InputFieldDetails fieldDetails={fieldDetails} />
                 {this.state.validating ? <p className='input-field-error-text'>{fieldError}</p> : null }

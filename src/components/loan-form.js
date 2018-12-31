@@ -144,7 +144,7 @@ class LoanForm extends Component {
               break;
           }
 
-        this.setState({ formErrors, [name]: value }, () => console.log(formErrors));
+        this.setState({ formErrors, [name]: value });
     }
 
     // find values for the minimum and maximum loan month terms, if there are none in the data set default values
