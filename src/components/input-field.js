@@ -3,6 +3,21 @@ import InputFieldDetails from './input-field-details';
 
 class InputField extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            validating: false
+        }
+    }
+
+    handleBlur = () => {
+        this.setState({validating: true});
+    }
+
+    handleFocus = () => {
+        this.setState({validating: false});
+    }
+
     render() {
     const {fieldLabel, fieldValue, fieldName, fieldDetails, fieldError, onChange} = this.props;
 
@@ -15,9 +30,12 @@ class InputField extends Component {
                     value={fieldValue}
                     placeholder='Start typing...'
                     onChange={onChange} 
+                    onBlur={this.handleBlur}
+                    onFocus={this.handleFocus}
+                    autoComplete={"off"}
                     required/>
                 <InputFieldDetails fieldDetails={fieldDetails} />
-                <p className='input-field-error-text'>{fieldError}</p>
+                {this.state.validating ? <p className='input-field-error-text'>{fieldError}</p> : null }
             </div>
         )
     }

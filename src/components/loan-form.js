@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Postcode from 'postcode-validator';
+import ValidDate from 'is-valid-date';
 import {withRouter} from 'react-router-dom';
 import InputField from './input-field';
 import DropdownField from './dropdown-field';
@@ -59,6 +60,7 @@ class LoanForm extends Component {
             loanAmout: '',
             loanTerm: '',
             countryPostcode: 'UK',
+            validating: false,
             formErrors: {
                 firstNameError: '',
                 surnameError: '',
@@ -116,11 +118,11 @@ class LoanForm extends Component {
               if(value.length === 0) {formErrors.emailError = '';}
               break;
             case 'postcode':
-              formErrors.postcodeError = value.length < 6 || Postcode.validate(value, this.state.countryPostcode) === false ? 'Minimum 6 characaters required or invalid postcode' : '';
+              formErrors.postcodeError = !(value.length >= 6 && value.length <= 8) && Postcode.validate(value, this.state.countryPostcode) === false ? 'Minimum 6 characaters required or invalid postcode' : '';
               if(value.length === 0) {formErrors.postcodeError = '';}
               break;
             case 'dateOfBirth':
-                formErrors.dateOfBirthError = this.checkDateOfBirthIsValid(value) ? 'Field is empty or date format is wrong' : '';
+                formErrors.dateOfBirthError = !ValidDate(value) ? 'Field is empty or date format is wrong' : '';
                 if(value.length === 0) {formErrors.dateOfBirthError = '';}
               break;
             case 'companyName':
@@ -158,23 +160,6 @@ class LoanForm extends Component {
 
         return  Array.from(Array(max-min).keys()).map(i => min + i);
      } 
-
-     checkDateOfBirthIsValid = (date) => {
-        const today = new Date();
-        date = Date.parse(date);
-
-        if (date === "") {
-            return false;
-        }
-        else if (checkDateOfBirthValidity.test(date)) {
-            return true;
-        }
-
-        if (today <= date) {
-            console.log("Current or future date is not allowed.");
-            return false;
-        }
-    }
 
     render() {
 
