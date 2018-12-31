@@ -1,0 +1,134 @@
+@import "../utilities/utilities";
+
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-family: $core-font-family;
+    background-color: $core-background-color;
+}
+
+.loan-form {
+    @include position;
+}
+
+.loan-form-heading {
+    padding: ($core-grid-unit * 2) $core-grid-unit;
+}
+
+.loan-logo-icon {
+    width: ($core-grid-unit * 10);
+    height: ($core-grid-unit * 10);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.loan-form-title {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: ($core-grid-unit * 3);
+}
+
+.loan-form-title-text {
+    @include title;
+    max-width: ($core-grid-unit * 20);
+    text-transform: uppercase;
+    text-align: left;
+    display: block;
+}
+
+.loan-form-subtitle {
+    @include subtitle; 
+}
+
+.input-field-text {
+    @include text;
+}
+
+.input-field.error {
+    box-shadow: 0 0 5px $error-color;
+    border: $core-border-width $core-border-style $error-color;
+}
+
+.input-filed-details {
+    @include subtext;
+    padding-left: $core-grid-unit;
+    margin-left: $core-grid-unit;
+    border-left-width: $core-border-width;
+    border-left-style: $core-border-style;
+    border-left-color: $core-secondary-color;
+}
+
+.input-field {
+    width: 100%;
+    height: ($core-grid-unit * 3);
+    text-align: left;
+    padding-left: $core-grid-unit;
+    border-width: $core-border-width;
+    border-style: $core-border-style;
+    border-color: $core-secondary-color;
+    box-shadow: $core-secondary-color;
+    outline: 0 none;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+}
+
+.input-field:focus {
+    box-shadow: 0 0 5px $core-border-color;
+    border: $core-border-width $core-border-style $core-border-color;
+}
+
+.input-field-error-text {
+    color: $error-color;
+}
+
+.input-field.dropdown {
+    height: ($core-grid-unit * 3.4);
+}
+
+.input-field::placeholder {
+    padding-left: $core-grid-unit;
+}
+
+.input-field-container {
+    min-width: ($core-grid-unit * 28);
+    max-width: 400px;
+    text-align: left;
+    align-self: baseline;
+    margin-bottom: 20px;
+
+    @media only screen and (max-width: $desktop-view) {
+        max-width: 100%;
+    }
+}
+
+.loan-form-main-content {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: space-evenly;
+    align-items: center;
+
+    @media only screen and (max-width: $desktop-view) {
+        grid-template-columns: 90%;
+    }
+}
+
+.loan-form-consent-container {
+    @include subtext;
+    width: 80%;
+    margin-top: ($core-grid-unit *3);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: ($core-grid-unit *2);
+}
+
+.loan-form-submit-button {
+    @include button;
+}
+
+.loan-form-submit-button:hover {
+    background-color: darken( $core-border-color, 10% )
+}

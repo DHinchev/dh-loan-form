@@ -1,0 +1,17 @@
+{
+    "loanForm": [
+        {
+            "fields": [
+                {
+                    "minMonths": 12,
+                    "maxMonths": 60
+                }
+            ],
+            "consent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        }
+    ],
+    "currency": "£",
+    "interestPercentage": 9,
+    "approvalApplyInfoText": "Click 'Apply Now' to begin your 7-minute online application process and be one step closer to receiving your fund",
+    "loanApprovedInterestDetailsText": "Example shwn based on 3.6% fixed annual rate.All loans are subjected to status and aragement fee between 1.5% - 4.5% of amount borrowed. Loans are subjected to affordability check."
+}

@@ -1,0 +1,37 @@
+@import "../utilities/utilities";
+
+.loan-denied {
+    @include position;
+    @media only screen and (min-width: $desktop-view) {
+        border-color: $error-color;
+    }
+}
+
+.denied-thank-you-text {
+    @include text;
+    width: 80%; 
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.denied-sorry-text {
+    @include text;
+    text-align: center;
+    color: $error-color;
+    font-weight: 500;
+}
+
+.denied-try-again-text {
+    @include text;
+    text-align: center;
+    color: $core-darker-text;
+    font-weight: 500;
+    margin-bottom: ($core-grid-unit * 5);
+}
+
+@media only screen and (max-width: $core-grid-unit * 46) {
+    .denied-logo-icon:not(:first-of-type) {
+        display: none;
+    }
+}

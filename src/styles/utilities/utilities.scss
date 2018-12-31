@@ -1,0 +1,82 @@
+@import "../utilities/fonts";
+$core-font-family: 'Montserrat', 'Lucida Grande', Verdana, sans-serif;
+$core-secondary-font-family: 'Montserrat Bold', 'Lucida Grande', Verdana, sans-serif;
+$core-background-color: #ffffff;
+$core-grid-unit: 10px;
+$core-border-width: 1px;
+$core-border-style: solid;
+$core-color: #554f4e;
+$core-darker-text: #000000;
+$core-secondary-color: #d3d3d3;
+$core-border-color: #26c534;
+$error-color: #8b0000;
+$max-width: 1080px;
+$desktop-view: 900px;
+ 
+@mixin text {
+    font-family: $core-font-family;
+    font-size: 16px;
+    font-weight: 300;
+    color: $core-color;
+    text-align: left;
+}
+
+@mixin subtext {
+    font-family: $core-font-family;
+    font-size: 14px;
+    font-weight: 300;
+    color: $core-secondary-color;
+    text-align: left;
+}
+
+@mixin title {
+    font-family: $core-font-family;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: $core-color;
+}
+
+@mixin subtitle {
+    font-family: $core-font-family;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: $core-border-color;
+}
+
+@mixin button {
+    font-family: $core-font-family;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: ($core-grid-unit * 28);
+    height: ($core-grid-unit * 4);
+    line-height: 1;
+    color: $core-background-color;
+    text-align: center;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: ($core-grid-unit * 2);
+    margin-bottom: ($core-grid-unit * 2);
+    background-color: $core-border-color;
+    border-width: $core-border-width;
+    border-style: $core-border-style;
+    border-color: $core-border-color;
+}
+
+@mixin position {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $core-grid-unit;
+    max-width: $max-width;
+    width: 90%;
+    
+    @media only screen and (min-width: $desktop-view) {
+        margin-top: ($core-grid-unit * 10);
+        margin-bottom: ($core-grid-unit * 10);
+        border-width: $core-border-width;
+        border-style: $core-border-style;
+        border-color: $core-border-color;
+    }
+}

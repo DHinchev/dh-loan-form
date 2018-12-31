@@ -1,0 +1,83 @@
+@import "../utilities/utilities";
+
+.loan-approved {
+    @include position;
+} 
+
+.approved-logo-icon {
+    margin-bottom: ($core-grid-unit * 2);
+}
+
+.approved-text,
+.loan-approved-apply-info {
+    @include text;
+    width: 60%; 
+    text-align: center;
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media only screen and (max-width: $desktop-view) {
+        width: 90%; 
+    }
+}
+
+.loan-approved-interest-details {
+    @include subtext;
+    width: 60%;
+    text-align: center;
+    margin-top: ($core-grid-unit *2);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: ($core-grid-unit *2);
+
+    @media only screen and (max-width: $desktop-view) {
+        width: 90%; 
+    }
+}
+
+.loan-approved-apply-info {
+    margin-top: ($core-grid-unit * 7);
+}
+
+.approved-amount {
+    font-family: $core-secondary-font-family;
+    color: $core-border-color;
+}
+
+.loan-approved-submit-button {
+    @include button;
+}
+
+.approved-summary-container {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 40% 20%;
+    grid-gap: 0px 8%;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media only screen and (max-width: $desktop-view) {
+        width: 90%; 
+    }
+}
+
+.approved-repayment-amount,
+.approved-loan-amount,
+.approved-interest-amount,
+.approved-total-repayment-amount {
+    font-family: $core-secondary-font-family;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.approved-interest-amount {
+    border-bottom-width: $core-border-width;
+    border-bottom-style: $core-border-style;
+    border-bottom-color: $core-color;
+    padding-bottom: ($core-grid-unit)
+}
