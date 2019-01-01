@@ -11,6 +11,7 @@ class FormHead extends Component {
                 <img
                 className='loan-logo-icon'
                 alt='Loan logo icon'
+                draggable='false'
                 src={LoanLogo}
                 />
                 <div className='loan-form-title'>

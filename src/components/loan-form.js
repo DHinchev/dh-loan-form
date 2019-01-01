@@ -98,7 +98,7 @@ class LoanForm extends Component {
         switch (name) {
             case 'firstName':
               formErrors.firstNameError =
-                value.length < 3 || (typeof value) !== 'string' || checkNameValidiry.test(value) === false ? 'Invalid name' : '';
+                value.length < 2 || (typeof value) !== 'string' || checkNameValidiry.test(value) === false ? 'Invalid name' : '';
                 if(value.length === 0) {formErrors.firstNameError = '';}
               break;
             case 'surname':
@@ -159,7 +159,7 @@ class LoanForm extends Component {
         // eslint-disable-next-line 
         const getUserBirthYear = date.split(/[.,\/ -]/);
         const ageCalculation = parseInt(currentYear) - parseInt(getUserBirthYear[2]);
-        if( ageCalculation >= 18) {
+        if( ageCalculation >= 18 && getUserBirthYear[2] > 1900) {
             return true;
         } else {
             return false;
