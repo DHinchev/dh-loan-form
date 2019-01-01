@@ -13,8 +13,7 @@ class FormHead extends Component {
                 className='denied-logo-icon'
                 alt='Denied logo icon'
                 draggable="false"
-                src={Denied}
-                />
+                src={Denied} />
                 <p className='denied-thank-you-text'>{thankYouText}</p>
                 <div className='denied-more-section'>
                     {moreCount.map((image, index) => {
@@ -24,8 +23,7 @@ class FormHead extends Component {
                             key={index}
                             alt='More info logo icon'
                             draggable="false"
-                            src={More}
-                            />
+                            src={More} />
                         )
                     })}
                 </div>

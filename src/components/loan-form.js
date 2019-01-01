@@ -168,9 +168,9 @@ class LoanForm extends Component {
 
     render() {
 
-      const {firstName, surname, dateOfBirth, email, postcode, companyName, annualTurnover, loanAmout, loanTerm, formErrors} = this.state;
+    const {firstName, surname, dateOfBirth, email, postcode, companyName, annualTurnover, loanAmout, loanTerm, formErrors} = this.state;
 
-      return (
+    return (
         <div className='loan-form'>
             <FormHead title={'Get your Instant quote'} subtitle={`We only need a few details and it won't affect your credit score`}/>
 
@@ -232,9 +232,9 @@ class LoanForm extends Component {
                 <FormConsentDetails consentText={Data.loanForm}/>
 
                 <div className='loan-form-submit-container'>
-                        <button className='loan-form-submit-button' type='submit'>
-                           Consent & Submit
-                        </button>
+                    <button className='loan-form-submit-button' type='submit'>
+                        Consent & Submit
+                    </button>
                     
                 </div>
             </form>
