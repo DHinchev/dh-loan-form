@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import InputFieldDetails from './input-field-details';
  
 class InputField extends Component {
     state = {
@@ -64,7 +63,7 @@ class InputField extends Component {
                     onFocus={this.handleFocus}
                     required={required}
                 />
-                <InputFieldDetails fieldDetails={fieldDetails} />
+                <p className="input-fieled-details">{fieldDetails}</p>
                 {
                     (validating)
                         ? <p className='input-field-error-text'>{fieldError}</p>
