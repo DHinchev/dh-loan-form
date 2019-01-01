@@ -66,7 +66,7 @@ class InputField extends Component {
                 <p className="input-fieled-details">{fieldDetails}</p>
                 {
                     (validating)
-                        ? <p className='input-field-error-text'>{fieldError}</p>
+                        ? <p className="input-field-error-text">{fieldError}</p>
                         : null
                 }
             </div>
