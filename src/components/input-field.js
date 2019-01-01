@@ -8,23 +8,33 @@ class InputField extends Component {
     static className = 'input-field';
     static defaultProps = {
         placeholder: 'Start typing...',
-        required: true
+        required: true,
+        onBlur: () => {},
+        onFocus: () => {},
     };
  
-    validate = () => {
-        this.setState({ validating: true });
+    validate = (cb) => {
+        this.setState({ validating: true }, cb);
     }
  
-    invalidate = () => {
-        this.setState({ validating: false });
+    invalidate = (cb) => {
+        this.setState({ validating: false }, cb);
     }
  
-    handleBlur = () => {
-       this.validate();
+    handleBlur = ({ target }) => {
+        const { value, name } = target;
+ 
+        this.validate(() => {
+           this.props.onBlur(value, name);
+       });
     }
  
-    handleFocus = () => {
-        this.invalidate();
+    handleFocus = ({ target }) => {
+        const { value, name } = target;
+ 
+        this.invalidate(() => {
+            this.props.onFocus(value, name);
+        });
     }
  
     hasErrors = (errors) => {
@@ -63,10 +73,10 @@ class InputField extends Component {
                     onFocus={this.handleFocus}
                     required={required}
                 />
-                <p className="input-fieled-details">{fieldDetails}</p>
+                <p className="input-field-details">{fieldDetails}</p>
                 {
                     (validating)
-                        ? <p className="input-field-error-text">{fieldError}</p>
+                        ? <p className='input-field-error-text'>{fieldError}</p>
                         : null
                 }
             </div>

@@ -171,10 +171,17 @@ class LoanForm extends Component {
         }
     }
  
-    handleInputChange = (event) => {
-        const { value, name } = event.target;
+    handleInputChange = ({ target }) => {
+        const { value, name } = target;
+ 
+        this.setState({
+            [name]: value
+        });
+    }
+ 
+    validateInputField = (value, name) => {
+        const errorStateName = `${name}Error`;
         const formErrors = { ...this.state.formErrors };
-        const errorStateName = name + 'Error';
  
         if (!value.length) {
             formErrors[errorStateName] = '';
@@ -186,10 +193,7 @@ class LoanForm extends Component {
             }
         }
  
-        this.setState({
-            formErrors,
-            [name]: value
-        });
+        this.setState({ formErrors });
     }
  
     // find values for the minimum and maximum loan month terms, if there are none in the data set default values
@@ -247,6 +251,7 @@ class LoanForm extends Component {
                             fieldValue={firstName}
                             fieldError={firstNameError}
                             onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
                         />
                         <InputField
                             fieldLabel="Surname"
@@ -254,6 +259,7 @@ class LoanForm extends Component {
                             fieldValue={surname}
                             fieldError={surnameError}
                             onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
                         />
                         <InputField
                             fieldLabel="Email"
@@ -261,7 +267,9 @@ class LoanForm extends Component {
                             fieldDetails="You must be director of limited company registered at Company House"
                             fieldValue={email}
                             fieldError={emailError}
-                            onChange={this.handleInputChange} />
+                            onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
+                        />
                         <InputField
                             fieldLabel="Date of birth"
                             fieldName="dateOfBirth"
@@ -269,6 +277,7 @@ class LoanForm extends Component {
                             fieldValue={dateOfBirth}
                             fieldError={dateOfBirthError}
                             onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
                         />
                         <InputField
                             fieldLabel="Residential postcode"
@@ -277,6 +286,7 @@ class LoanForm extends Component {
                             fieldValue={postcode}
                             fieldError={postcodeError}
                             onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
                         />
                         <InputField
                             fieldLabel="Company name"
@@ -284,6 +294,7 @@ class LoanForm extends Component {
                             fieldValue={companyName}
                             fieldError={companyNameError}
                             onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
                         />
                         <InputField
                             fieldLabel="Annual turnover"
@@ -292,6 +303,7 @@ class LoanForm extends Component {
                             fieldValue={annualTurnover}
                             fieldError={annualTurnoverError}
                             onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
                         />
                         <InputField
                             fieldLabel="Loan amount"
@@ -300,6 +312,7 @@ class LoanForm extends Component {
                             fieldValue={loanAmount}
                             fieldError={loanAmountError}
                             onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
                         />
                         <DropdownField
                             fieldLabel="Loan term"
@@ -308,6 +321,7 @@ class LoanForm extends Component {
                             arrayOptions={this.generateMonthsOptions()}
                             fieldError={loanTermError}
                             onChange={this.handleInputChange}
+                            onBlur={this.validateInputField}
                         />
                     </div>
  
