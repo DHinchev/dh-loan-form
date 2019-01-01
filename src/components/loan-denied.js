@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DeniedHead from './denied-head'; 
 import DeniedDetails from './denied-details'; 
-import '../styles/denied-component/denied.css';
+import '../styles/denied-component/denied.scss';
 
 class LoanDenied extends Component {
 

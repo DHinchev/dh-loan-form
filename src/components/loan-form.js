@@ -6,7 +6,7 @@ import InputField from './input-field';
 import DropdownField from './dropdown-field';
 import FormConsentDetails from './form-consent-details';
 import FormHead from './form-head';
-import '../styles/form-component/loan-form.css';
+import '../styles/form-component/loan-form.scss';
 import Data from '../assets/data/data.json';
 
 const checkEmailValidity = RegExp(
@@ -38,11 +38,12 @@ const formValid = ({ formErrors, ...rest }) => {
     });
   
     return valid;
-  };
+};
 
 class LoanForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             firstName: '',
             surname: '',
@@ -51,7 +52,7 @@ class LoanForm extends Component {
             postcode: '',
             companyName: '',
             annualTurnover: '',
-            loanAmout: '',
+            loanAmount: '',
             loanTerm: '',
             countryPostcode: 'UK',
             formErrors: {
@@ -71,8 +72,8 @@ class LoanForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (formValid(this.state) && this.state.loanAmout >= 10000) {
-            localStorage.setItem('loanAmount',  this.state.loanAmout);
+        if (formValid(this.state) && this.state.loanAmount >= 10000) {
+            localStorage.setItem('loanAmount',  this.state.loanAmount);
             localStorage.setItem('loanTerm',  this.state.loanTerm);
             this.setState({
                 firstName: '',
@@ -82,7 +83,7 @@ class LoanForm extends Component {
                 postcode: '',
                 companyName: '',
                 annualTurnover: '',
-                loanAmout: '',
+                loanAmount: '',
                 loanTerm: '',
             });
             this.props.history.push('/approval');
@@ -122,7 +123,7 @@ class LoanForm extends Component {
                 formErrors.companyNameError = value.length < 3 ? 'Minimum 3 characaters required' : '';
                 if(value.length === 0) {formErrors.companyNameError = '';}
               break;
-            case 'loanAmout':
+            case 'loanAmount':
                 formErrors.loanAmountError = checkMoneyValidity.test(value) === false ? 'Value need to be in numbers' : '';
                 if(value.length === 0) {formErrors.loanAmountError = '';}
               break;
@@ -168,79 +169,97 @@ class LoanForm extends Component {
 
     render() {
 
-    const {firstName, surname, dateOfBirth, email, postcode, companyName, annualTurnover, loanAmout, loanTerm, formErrors} = this.state;
+        const {
+            firstName,
+            surname,
+            dateOfBirth,
+            email,
+            postcode,
+            companyName,
+            annualTurnover, 
+            loanAmount,
+            loanTerm,
+            formErrors} = this.state;
 
-    return (
-        <div className='loan-form'>
-            <FormHead title={'Get your Instant quote'} subtitle={`We only need a few details and it won't affect your credit score`}/>
+        return (
+            <div className='loan-form'>
+                <FormHead
+                    title={'Get your Instant quote'}
+                    subtitle={`We only need a few details and it won't affect your credit score`}
+                />
 
-            <form onSubmit={this.handleSubmit}>
-                <div className='loan-form-main-content'>
-                    <InputField fieldLabel={'First name'}
-                                fieldValue={firstName}
-                                fieldName={'firstName'}
-                                fieldError={formErrors.firstNameError}
-                                onChange={this.handleInputChange} />
-                    <InputField fieldLabel={'Surname'}
-                                fieldValue={surname}
-                                fieldName={'surname'}
-                                fieldError={formErrors.surnameError}
-                                onChange={this.handleInputChange} />
-                    <InputField fieldLabel={'Email'}
-                                fieldValue={email}
-                                fieldName={'email'}
-                                fieldError={formErrors.emailError}
-                                fieldDetails={'You must be director of limited company registered at Company House'}
-                                onChange={this.handleInputChange} />
-                    <InputField fieldLabel={'Date of birth'}
-                                fieldValue={dateOfBirth}
-                                fieldName={'dateOfBirth'}
-                                fieldDetails={'You must be 18 years or older to apply for ezbob loan'}
-                                fieldError={formErrors.dateOfBirthError}
-                                onChange={this.handleInputChange} />
-                    <InputField fieldLabel={'Residential postcode'}
-                                fieldValue={postcode}
-                                fieldName={'postcode'}
-                                fieldDetails={'You must be UK resident'}
-                                fieldError={formErrors.postcodeError}
-                                onChange={this.handleInputChange} />
-                    <InputField fieldLabel={'Company name'}
-                                fieldValue={companyName}
-                                fieldName={'companyName'}
-                                fieldError={formErrors.companyNameError}
-                                onChange={this.handleInputChange} />
-                    <InputField fieldLabel={'Annual turnover'}
-                                fieldValue={annualTurnover}
-                                fieldName={'annualTurnover'}
-                                fieldDetails={'Your company must have a current annual turnover of 15k or moret'}
-                                fieldError={formErrors.annualTurnoverError}
-                                onChange={this.handleInputChange} />
-                    <InputField fieldLabel={'Loan ammount'}
-                                fieldValue={loanAmout}
-                                fieldName={'loanAmout'}
-                                fieldDetails={'£10,000 - £150,000'}
-                                fieldError={formErrors.loanAmountError}
-                                onChange={this.handleInputChange} />
-                    <DropdownField fieldLabel={'Loan term'}
-                                   fieldValue={loanTerm}
-                                   fieldName={'loanTerm'}
-                                   arrayOptions={this.generateMonthsOptions()}
-                                   fieldError={formErrors.loanTermError}
-                                   onChange={this.handleInputChange} />
-                </div>
+                <form onSubmit={this.handleSubmit}>
+                    <div className='loan-form-main-content'>
+                        <InputField 
+                            fieldLabel="First name"
+                            fieldValue={firstName}
+                            fieldName="firstName"
+                            fieldError={formErrors.firstNameError}
+                            onChange={this.handleInputChange}
+                        />
+                        <InputField 
+                            fieldLabel="Surname"
+                            fieldValue={surname}
+                            fieldName="surname"
+                            fieldError={formErrors.surnameError}
+                            onChange={this.handleInputChange} />
+                        <InputField 
+                            fieldLabel="Email"
+                            fieldValue={email}
+                            fieldName="email"
+                            fieldError={formErrors.emailError}
+                            fieldDetails="You must be director of limited company registered at Company House"
+                            onChange={this.handleInputChange} />
+                        <InputField
+                            fieldLabel="Date of birth'"
+                            fieldValue={dateOfBirth}
+                            fieldName="dateOfBirth"
+                            fieldDetails="You must be 18 years or older to apply for ezbob loan"
+                            fieldError={formErrors.dateOfBirthError}
+                            onChange={this.handleInputChange} />
+                        <InputField fieldLabel={'Residential postcode'}
+                                    fieldValue={postcode}
+                                    fieldName={'postcode'}
+                                    fieldDetails={'You must be UK resident'}
+                                    fieldError={formErrors.postcodeError}
+                                    onChange={this.handleInputChange} />
+                        <InputField fieldLabel={'Company name'}
+                                    fieldValue={companyName}
+                                    fieldName={'companyName'}
+                                    fieldError={formErrors.companyNameError}
+                                    onChange={this.handleInputChange} />
+                        <InputField fieldLabel={'Annual turnover'}
+                                    fieldValue={annualTurnover}
+                                    fieldName={'annualTurnover'}
+                                    fieldDetails={'Your company must have a current annual turnover of 15k or moret'}
+                                    fieldError={formErrors.annualTurnoverError}
+                                    onChange={this.handleInputChange} />
+                        <InputField fieldLabel={'Loan ammount'}
+                                    fieldValue={loanAmount}
+                                    fieldName={'loanAmount'}
+                                    fieldDetails={'£10,000 - £150,000'}
+                                    fieldError={formErrors.loanAmountError}
+                                    onChange={this.handleInputChange} />
+                        <DropdownField fieldLabel={'Loan term'}
+                                    fieldValue={loanTerm}
+                                    fieldName={'loanTerm'}
+                                    arrayOptions={this.generateMonthsOptions()}
+                                    fieldError={formErrors.loanTermError}
+                                    onChange={this.handleInputChange} />
+                    </div>
 
-                <FormConsentDetails consentText={Data.loanForm}/>
+                    <FormConsentDetails consentText={Data.loanForm}/>
 
-                <div className='loan-form-submit-container'>
-                    <button className='loan-form-submit-button' type='submit'>
-                        Consent & Submit
-                    </button>
-                    
-                </div>
-            </form>
-        </div>
-      );
+                    <div className='loan-form-submit-container'>
+                        <button className='loan-form-submit-button' type='submit'>
+                            Consent & Submit
+                        </button>
+                        
+                    </div>
+                </form>
+            </div>
+        );
     }
-  }
+}
   
   export default withRouter(LoanForm);

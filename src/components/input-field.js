@@ -1,43 +1,78 @@
 import React, { Component } from 'react';
 import InputFieldDetails from './input-field-details';
-
+ 
 class InputField extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            validating: false
-        }
+    state = {
+        validating: false
+    };
+ 
+    static className = 'input-field';
+    static defaultProps = {
+        placeholder: 'Start typing...',
+        required: true
+    };
+ 
+    validate = () => {
+        this.setState({ validating: true });
     }
-
+ 
+    invalidate = () => {
+        this.setState({ validating: false });
+    }
+ 
     handleBlur = () => {
-        this.setState({validating: true});
+       this.validate();
     }
-
+ 
     handleFocus = () => {
-        this.setState({validating: false});
+        this.invalidate();
     }
-
+ 
+    hasErrors = (errors) => {
+        return errors.length > 0;
+    }
+ 
     render() {
-    const {fieldLabel, fieldValue, fieldName, fieldDetails, fieldError, onChange} = this.props;
-
+        const {
+            fieldLabel,
+            fieldValue,
+            fieldName,
+            fieldDetails,
+            fieldError,
+            onChange,
+            placeholder,
+            required,
+        } = this.props;
+ 
+        const { validating } = this.state;
+ 
+        const className = this.hasErrors(fieldError)
+            ? `${InputField.className} error`
+            : InputField.className;
+ 
         return (
-            <div className='input-field-container'>
-                <p className='input-field-text'>{fieldLabel}</p>
-                <input name={fieldName}
-                    type='text'
-                    className={`input-field ${fieldError.length > 0 ? 'error' : ''}`}
+            <div className="input-field-container">
+                <p className="input-field-text">{fieldLabel}</p>
+                <input
+                    type="text"
+                    placeholder={placeholder}
+                    name={fieldName}
+                    className={className}
                     value={fieldValue}
-                    placeholder='Start typing...'
-                    onChange={onChange} 
+                    onChange={onChange}
                     onBlur={this.handleBlur}
                     onFocus={this.handleFocus}
-                    required />
+                    required={required}
+                />
                 <InputFieldDetails fieldDetails={fieldDetails} />
-                {this.state.validating ? <p className='input-field-error-text'>{fieldError}</p> : null }
+                {
+                    (validating)
+                        ? <p className='input-field-error-text'>{fieldError}</p>
+                        : null
+                }
             </div>
         )
     }
-  }
-  
-  export default InputField;
+}
+ 
+export default InputField;

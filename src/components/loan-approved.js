@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApprovedHead from './approved-head'; 
 import ApprovedSummaryContainer from './approved-summary-container'; 
-import '../styles/approved-component/approved.css';
+import '../styles/approved-component/approved.scss';
 import Data from '../assets/data/data.json';
 
 class LoanApproved extends Component {
