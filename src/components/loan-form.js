@@ -138,6 +138,7 @@ class LoanForm extends Component {
                 : '';
         },
         loanTerm: (value) => {
+            console.log(!value.length);
             return (!value.length)
                 ? 'Please select repayment period'
                 : '';
@@ -312,6 +313,7 @@ class LoanForm extends Component {
                         <DropdownField
                             fieldLabel="Loan term"
                             fieldName="loanTerm"
+                            fieldDetails="12 months - 60 months"
                             fieldValue={loanTerm}
                             arrayOptions={this.generateMonthsOptions()}
                             fieldError={loanTermError}

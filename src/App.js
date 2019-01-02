@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import LoanForm from './components/loan-form';
 import LoanApproved from './components/loan-approved';
 import LoanDenied from './components/loan-denied';
-import './App.css';
  
 const App = (props) => (
   <Router>

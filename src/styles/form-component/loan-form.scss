@@ -34,6 +34,12 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
+
+.loan-form-svg-logo {
+    width: ($core-grid-unit * 10);
+    height: ($core-grid-unit * 10);
+    margin-right: $core-grid-unit;
+}
  
 .loan-form-title-text {
     @include title;
@@ -44,6 +50,7 @@ body {
  
 .loan-form-subtitle {
     @include subtitle;
+    text-align: center;
 }
  
 .input-field-text {
@@ -135,5 +142,9 @@ body {
 }
  
 .loan-form-submit-button:hover {
-    background-color: darken( $core-border-color, 10% )
+    background-color: darken($core-border-color, 10%);
+}
+
+.loan-form-submit-container {
+    text-align: center;
 }

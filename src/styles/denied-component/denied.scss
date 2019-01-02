@@ -22,6 +22,24 @@
     font-weight: 500;
 }
 
+.denied-heading {
+    text-align: center;
+}
+
+.denied-logo-icon {
+    width: ($core-grid-unit * 30);
+    height: ($core-grid-unit * 20);
+}
+
+.denied-more-section {
+    display: inline-flex;
+}
+
+.denied-logo-icon-more {
+    width: ($core-grid-unit * 9);
+    height: ($core-grid-unit * 5);
+}
+
 .denied-try-again-text {
     @include text;
     text-align: center;
