@@ -138,8 +138,7 @@ class LoanForm extends Component {
                 : '';
         },
         loanTerm: (value) => {
-            console.log(!value.length);
-            return (!value.length)
+            return (value === 'empty')
                 ? 'Please select repayment period'
                 : '';
         }

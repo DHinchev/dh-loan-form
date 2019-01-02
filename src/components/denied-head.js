@@ -7,7 +7,6 @@ const moreCount = ['','','']
 const DeniedHead = ({ thankYouText }) => (
     
     <div className="denied-heading">
-
         <ReactSVG 
             svgClassName="denied-logo-icon"
             alt="Approved logo icon"

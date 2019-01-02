@@ -69,10 +69,10 @@ class DropdownField extends Component {
                     onBlur={this.handleBlur}
                     onFocus={this.handleFocus}
                     required={required}>
-                <option></option>
+                <option value="empty"></option>
                 {arrayOptions.map((option, index) => {
                     return (
-                        <option key={index+1}>{option} months</option>
+                        <option key={index}>{option} months</option>
                     );
                 })}
             </select>
