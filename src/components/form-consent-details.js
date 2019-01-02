@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
-
-class FormConsentDetails extends Component {
-
-    render() {
-    const {consentText} = this.props;
-
-        return (
-            <div className='loan-form-consent-container'>
-                <p>{consentText.map(section => {
-                    return (section.consent);
-                })}</p>
-            </div>
-        )
-    }
-  }
-  
-  export default FormConsentDetails;
+import React from 'react';
+ 
+const FormConsentDetails = ({ consentText }) => (
+    <div className="loan-form-consent-container">
+        <p>
+            {
+                consentText.consent
+            }
+        </p>
+    </div>
+);
+ 
+export default FormConsentDetails;

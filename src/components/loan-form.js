@@ -71,12 +71,8 @@ class LoanForm extends Component {
         const currentYear = new Date().getFullYear();
         // eslint-disable-next-line
         const getUserBirthYear = date.split(/[.,\/ -]/);
-        const ageCalculation = parseInt(currentYear) - parseInt(getUserBirthYear[2]);
-        if (ageCalculation >= 18 && getUserBirthYear[2] > 1900) {
-            return true;
-        } else {
-            return false;
-        }
+        const ageCalculation = parseInt(currentYear, 10) - parseInt(getUserBirthYear[2], 10);
+        return (ageCalculation >= 18 && getUserBirthYear[2] > 1900);
     }
  
     static fieldErrorMessageMap = {
@@ -196,7 +192,6 @@ class LoanForm extends Component {
         this.setState({ formErrors });
     }
  
-    // find values for the minimum and maximum loan month terms, if there are none in the data set default values
     generateMonthsOptions = () => {
         let min;
         let max;
@@ -325,10 +320,10 @@ class LoanForm extends Component {
                         />
                     </div>
  
-                    <FormConsentDetails consentText={Data.loanForm} />
+                    <FormConsentDetails consentText={Data} />
  
-                    <div className='loan-form-submit-container'>
-                        <button className='loan-form-submit-button' type='submit'>
+                    <div className="loan-form-submit-container">
+                        <button className="loan-form-submit-button" type="submit">
                             Consent & Submit
                         </button>
                     </div>

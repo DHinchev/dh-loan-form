@@ -55,7 +55,7 @@ body {
     border: $core-border-width $core-border-style $error-color;
 }
  
-.input-fieled-details {
+.input-field-details {
     @include subtext;
     padding-left: $core-grid-unit;
     margin-left: $core-grid-unit;
