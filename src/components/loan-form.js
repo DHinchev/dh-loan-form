@@ -20,26 +20,18 @@ const checkNameValidity = RegExp(
     // eslint-disable-next-line
     /^[a-z ,.'-]+$/i
 );
- 
+
 const checkMoneyValidity = RegExp(
     // eslint-disable-next-line
     /^[0-9]+(\.[0-9]{1,2})?$/
 );
  
-const formValid = ({ formErrors, ...rest }) => {
-    let valid = true;
- 
-    // validate form errors being empty
-    Object.values(formErrors).forEach(val => {
-      val.length > 0 && (valid = false);
-    });
- 
-    // validate the form was filled out
-    Object.values(rest).forEach(val => {
-      val === null && (valid = false);
-    });
- 
-    return valid;
+const isFormValid = (formErrors) => {
+    const hasNoErrors = Object
+        .values(formErrors)
+        .every(value => value.length === 0);
+
+    return hasNoErrors;
 };
  
 class LoanForm extends Component {
@@ -147,9 +139,14 @@ class LoanForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (formValid(this.state) && this.state.loanAmount >= 10000) {
-            localStorage.setItem('loanAmount',  this.state.loanAmount);
-            localStorage.setItem('loanTerm',  this.state.loanTerm);
+
+        const { history } = this.props;
+        const { formErrors, loanAmount, loanTerm } = this.state;
+
+        if (isFormValid(formErrors) && loanAmount >= 10000) {
+            localStorage.setItem('loanAmount', loanAmount);
+            localStorage.setItem('loanTerm',  loanTerm);
+            
             this.setState({
                 firstName: '',
                 surname: '',
@@ -161,9 +158,9 @@ class LoanForm extends Component {
                 loanAmount: '',
                 loanTerm: '',
             });
-            this.props.history.push('/approval');
+            history.push('/approval');
         } else {
-            this.props.history.push('/denied');
+            history.push('/denied');
         }
     }
  
